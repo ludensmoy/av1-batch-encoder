@@ -224,8 +224,8 @@ foreach ($FILE in $FILE_LIST) {
             if ($TARGET_V -lt 600)    { $TARGET_V = 600 }
         }
 
-        $MAXRATE = "$([int]($TARGET_V * 2))k"
-        $BUFSIZE  = "$([int]($TARGET_V * 2))k"
+        $MAXRATE = "${LIMIT}k"
+        $BUFSIZE  = "${LIMIT}k"
 
         # ──────────────────────────────────────────────────────────
         # [5] Audio settings (preserve original sample rate)

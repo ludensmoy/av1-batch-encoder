@@ -242,8 +242,8 @@ foreach ($FILE in $FILE_LIST) {
             if ($TARGET_V -lt 600)    { $TARGET_V = 600 }
         }
 
-        $MAXRATE = "$([int]($TARGET_V * 2))k"
-        $BUFSIZE  = "$([int]($TARGET_V * 2))k"
+        $MAXRATE = "${LIMIT}k"
+        $BUFSIZE  = "${LIMIT}k"
 
         # ──────────────────────────────────────────────────────────
         # [5] 오디오 설정 (원본 샘플레이트 보존)
