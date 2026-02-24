@@ -53,14 +53,13 @@ Write-Host "📂 대상 폴더: $TARGET_DIR" -ForegroundColor White
 # ==============================================================================
 # 파일 목록 수집
 # ==============================================================================
-$TARGET_EXTS = @("*.mp4","*.mkv","*.avi","*.mov","*.wmv","*.flv","*.mts","*.ts","*.m2ts","*.mpeg","*.mpg")
+$ALLOWED_EXTS = @(".mp4",".mkv",".avi",".mov",".wmv",".flv",".mts",".ts",".m2ts",".mpeg",".mpg")
 
 # -Include와 -Recurse를 같이 쓰면 PowerShell 버그로 확장자 필터가 무시됨
 # → -File로 전체 수집 후 Where-Object로 직접 필터링
 $FILE_LIST = Get-ChildItem -LiteralPath $TARGET_DIR -Recurse -File |
     Where-Object {
-        $TARGET_EXTS -contains ("*" + $_.Extension.ToLower()) -and
-        $_.Extension -notin @(".old",".tmp") -and
+        $ALLOWED_EXTS -contains $_.Extension.ToLower() -and
         $_.Name -notlike "*.mp4.tmp"
     } | Sort-Object FullName
 

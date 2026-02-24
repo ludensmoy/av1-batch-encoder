@@ -39,12 +39,11 @@ Write-Host "📂 Target folder: $TARGET_DIR" -ForegroundColor White
 # ==============================================================================
 # Collect file list
 # ==============================================================================
-$TARGET_EXTS = @("*.mp4","*.mkv","*.avi","*.mov","*.wmv","*.flv","*.mts","*.ts","*.m2ts","*.mpeg","*.mpg")
+$ALLOWED_EXTS = @(".mp4",".mkv",".avi",".mov",".wmv",".flv",".mts",".ts",".m2ts",".mpeg",".mpg")
 
 $FILE_LIST = Get-ChildItem -LiteralPath $TARGET_DIR -Recurse -File |
     Where-Object {
-        $TARGET_EXTS -contains ("*" + $_.Extension.ToLower()) -and
-        $_.Extension -notin @(".old",".tmp") -and
+        $ALLOWED_EXTS -contains $_.Extension.ToLower() -and
         $_.Name -notlike "*.mp4.tmp"
     } | Sort-Object FullName
 
